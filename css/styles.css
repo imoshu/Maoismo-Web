@@ -1,0 +1,282 @@
+:root {
+  --crema: #f4e9da;
+  --crema-suave: rgba(244, 233, 218, 0.6);
+  --rojo: #b3171a;
+  --rojo-oscuro: #3a0a0a;
+  --fondo: #160707;
+  --duracion: 900ms;
+  --curva: cubic-bezier(0.77, 0, 0.175, 1);
+  --fuente: "Cormorant Garamond", Garamond, "Times New Roman", serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: var(--fondo);
+  color: var(--crema);
+  font-family: var(--fuente);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.visor {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.carril {
+  --i: 0;
+  height: 100%;
+  transform: translate3d(0, calc(var(--i) * -100%), 0);
+  transition: transform var(--duracion) var(--curva);
+  will-change: transform;
+}
+
+.carril.sin-transicion {
+  transition: none;
+}
+
+.seccion {
+  position: relative;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 0 clamp(16px, 8vw, 140px);
+  overflow: hidden;
+}
+
+.seccion__contenido {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1000px;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 700ms ease, transform 900ms var(--curva);
+  transition-delay: 0ms;
+}
+
+.seccion.activa .seccion__contenido {
+  opacity: 1;
+  transform: none;
+  transition-delay: 350ms;
+}
+
+/* ---------- Inicio ---------- */
+
+.seccion--inicio {
+  background: url("../assets/img/monumental-red-dawn-rally.webp") center / cover no-repeat;
+}
+
+.seccion--inicio::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(20, 4, 4, 0.35) 0%, rgba(20, 4, 4, 0.7) 75%),
+    linear-gradient(rgba(60, 8, 8, 0.45), rgba(20, 4, 4, 0.55));
+}
+
+.titulo-principal {
+  font-size: clamp(2.6rem, 6.5vw, 6rem);
+  font-weight: 500;
+  max-width: 16ch;
+  text-wrap: balance;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.55);
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Secciones siguientes ---------- */
+
+.seccion--video,
+.seccion--juego,
+.seccion--formulario,
+.seccion--fuentes {
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(179, 23, 26, 0.18), transparent 60%),
+    var(--fondo);
+}
+
+.titulo-seccion {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  margin-bottom: clamp(20px, 4vh, 40px);
+}
+
+.marco-video {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--crema-suave);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.marco-video iframe,
+.marco-video video {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.zona-juego,
+.zona-formulario {
+  width: 100%;
+  min-height: 40vh;
+  border: 1px dashed var(--crema-suave);
+}
+
+.lista-fuentes {
+  width: 100%;
+  max-width: 760px;
+  margin: 0;
+  padding: 0 0 0 1.4em;
+  text-align: left;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  line-height: 1.5;
+}
+
+.lista-fuentes li + li {
+  margin-top: 0.8em;
+}
+
+.lista-fuentes a {
+  color: var(--crema);
+}
+
+.desplazable {
+  overflow-y: auto;
+  min-height: 0;
+  overscroll-behavior: contain;
+}
+
+/* ---------- Viñetas (navegación lateral) ---------- */
+
+.vinetas {
+  position: fixed;
+  top: 50%;
+  right: clamp(16px, 3vw, 44px);
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.vinetas ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 18px;
+}
+
+.vinetas a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 4px 0;
+  color: var(--crema);
+  text-decoration: none;
+  outline: none;
+}
+
+.vinetas__texto {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transform: translateX(8px);
+  transition: opacity 300ms ease, transform 300ms ease;
+  pointer-events: none;
+}
+
+.vinetas__barra {
+  width: 6px;
+  height: 26px;
+  border: 2px solid var(--crema);
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  transition: height 400ms var(--curva), background-color 300ms ease;
+}
+
+.vinetas a:hover .vinetas__texto,
+.vinetas a:focus-visible .vinetas__texto,
+.vinetas a[aria-current="true"] .vinetas__texto {
+  opacity: 1;
+  transform: none;
+}
+
+.vinetas a:hover .vinetas__barra,
+.vinetas a:focus-visible .vinetas__barra {
+  background: var(--crema-suave);
+}
+
+.vinetas a[aria-current="true"] .vinetas__barra {
+  height: 52px;
+  background: var(--crema);
+}
+
+.vinetas a:focus-visible .vinetas__barra {
+  outline: 2px solid var(--rojo);
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .vinetas ul {
+    gap: 14px;
+  }
+
+  .vinetas__texto {
+    font-size: 1rem;
+  }
+
+  .vinetas a:not([aria-current="true"]) .vinetas__texto {
+    display: none;
+  }
+
+  .vinetas__barra {
+    height: 20px;
+  }
+
+  .vinetas a[aria-current="true"] .vinetas__barra {
+    height: 40px;
+  }
+
+  .seccion {
+    padding: 0 56px 0 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duracion: 1ms;
+  }
+
+  .seccion__contenido,
+  .seccion.activa .seccion__contenido {
+    transition: none;
+    transform: none;
+  }
+}
