@@ -2,7 +2,116 @@ document.addEventListener("DOMContentLoaded", function () {
   const contenedorJuego = document.querySelector(".zona-juego");
   if (!contenedorJuego) return;
 
+  // ============================================================
+  // DATOS DE LAS OBRAS (aquí se editan los textos del modal)
+  // ============================================================
+  const OBRAS = [
+    {
+      left: 350,
+      titulo: "La Reforma Agraria (1949)",
+      texto: "texto...",
+      nombre: "Reforma Agraria",
+      zh: "土地改革",
+      es: "La tierra para quien la trabaja"
+    },
+    {
+      left: 950,
+      titulo: "El Gran Salto Adelante (1958)",
+      texto: "texto...",
+      nombre: "Gran Salto Adelante",
+      zh: "大跃进",
+      es: "Más, más rápido, mejor y más barato"
+    },
+    {
+      left: 1550,
+      titulo: "La Revolución Cultural (1966)",
+      texto: "texto...",
+      nombre: "Revolución Cultural",
+      zh: "文化大革命",
+      es: "Gran Revolución Cultural Proletaria"
+    },
+    {
+      left: 2150,
+      titulo: "Las Guardias Rojas (1966–1967)",
+      texto: "texto...",
+      nombre: "Guardias Rojas",
+      zh: "红卫兵",
+      es: "Rebelarse está justificado"
+    }
+  ];
+
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+  }
+
+  // ============================================================
+  // DECORADO (se genera con código)
+  // ============================================================
+  const faroles = Array.from({ length: 8 }, function (_, i) {
+    return `<div class="farol" style="left:${20 + i * 240}px; animation-delay:${(i * 0.7).toFixed(1)}s"></div>`;
+  }).join("");
+
+  const ventanas = Array.from({ length: 6 }, function (_, i) {
+    return `<div class="ventana" style="left:${140 + i * 330}px"></div>`;
+  }).join("");
+
+  const chimeneas = [
+    [200, 150], [330, 210], [600, 120], [760, 190],
+    [1100, 230], [1250, 140], [1500, 200], [1700, 160]
+  ].map(function (c, i) {
+    return `<div class="chimenea" style="left:${c[0]}px; height:${c[1]}px; --retraso:${i * 0.9}s"></div>`;
+  }).join("");
+
+  // Columnas: una en cada extremo y dos flanqueando el centro de cada pasillo entre cuadros
+  const columnasX = [40, 2338];
+  [720, 1320, 1920].forEach(function (centro) {
+    columnasX.push(centro - 150 - 22, centro + 150 - 22);
+  });
+  const columnas = columnasX.map(function (x) {
+    return `<div class="columna" style="left:${x}px"></div>`;
+  }).join("");
+
+  const pergaminos = OBRAS.map(function (o) {
+    return `
+      <div class="pergamino" style="left:${o.left - 50}px">
+        <span class="pergamino__zh">${o.zh}</span>
+        <span class="pergamino__es">${o.es}</span>
+      </div>`;
+  }).join("");
+
+  const cuadros = OBRAS.map(function (o) {
+    return `
+      <div class="obra-museo" style="left: ${o.left}px;" data-titulo="${esc(o.titulo)}" data-texto="${esc(o.texto)}">
+        <span class="obra-museo__indicador">Haz clic</span>
+        <div style="width: 100%; height: 80px; background: #3a0a0a; border: 1px dashed var(--crema-suave);"></div>
+        <span class="obra-museo__titulo">${o.nombre}</span>
+      </div>`;
+  }).join("");
+
+  contenedorJuego.dataset.epoca = "0";
+
   contenedorJuego.innerHTML = `
+    <!-- Fondo lejano (parallax) -->
+    <div class="fondo-lejano" id="fondoLejano">
+      <div class="tinte tinte--0"></div>
+      <div class="tinte tinte--1"></div>
+      <div class="tinte tinte--2"></div>
+      <div class="tinte tinte--3"></div>
+
+      <div class="motivo motivo--campo"></div>
+      <div class="motivo motivo--industria">${chimeneas}</div>
+      <div class="motivo motivo--sol">
+        <div class="sol"></div>
+        <div class="estrella-grande"></div>
+      </div>
+
+      <div class="fondo__paneles"></div>
+      <div class="fondo__zocalo"></div>
+      ${ventanas}
+      <div class="fondo__viga"></div>
+      ${faroles}
+    </div>
+
     <div class="linea-tiempo">
       <div class="linea-tiempo__barra"></div>
       <div class="linea-tiempo__progreso" id="lineaProgreso"></div>
@@ -27,34 +136,17 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
     <div class="escenario-museo" id="escenario">
-      <div class="obra-museo" style="left: 350px;" data-titulo="La Reforma Agraria (1949)" data-texto="texto...">
-        <span class="obra-museo__indicador">Haz clic</span>
-        <div style="width: 100%; height: 80px; background: #3a0a0a; border: 1px dashed var(--crema-suave);"></div>
-        <span class="obra-museo__titulo">Reforma Agraria</span>
-      </div>
-
-      <div class="obra-museo" style="left: 950px;" data-titulo="El Gran Salto Adelante (1958)" data-texto="texto...">
-        <span class="obra-museo__indicador">Haz clic</span>
-        <div style="width: 100%; height: 80px; background: #3a0a0a; border: 1px dashed var(--crema-suave);"></div>
-        <span class="obra-museo__titulo">Gran Salto Adelante</span>
-      </div>
-
-      <div class="obra-museo" style="left: 1550px;" data-titulo="La Revolución Cultural (1966)" data-texto="texto...">
-        <span class="obra-museo__indicador">Haz clic</span>
-        <div style="width: 100%; height: 80px; background: #3a0a0a; border: 1px dashed var(--crema-suave);"></div>
-        <span class="obra-museo__titulo">Revolución Cultural</span>
-      </div>
-
-      <div class="obra-museo" style="left: 2150px;" data-titulo="Las Guardias Rojas (1966–1967)" data-texto="texto...">
-        <span class="obra-museo__indicador">Haz clic</span>
-        <div style="width: 100%; height: 80px; background: #3a0a0a; border: 1px dashed var(--crema-suave);"></div>
-        <span class="obra-museo__titulo">Guardias Rojas</span>
-      </div>
+      ${columnas}
+      ${pergaminos}
+      <div class="alfombra"></div>
+      ${cuadros}
 
       <div class="personaje-mao" id="personaje">
         <img src="assets/img/mao_cuerpo.png" alt="Mao Zedong">
       </div>
     </div>
+
+    <div class="vineta-museo"></div>
 
     <div class="modal-info" id="modalInfo">
       <h3 class="modal-info__titulo" id="modalTitulo">Título de la Obra</h3>
@@ -65,6 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const personaje = document.getElementById("personaje");
   const escenario = document.getElementById("escenario");
+  const fondoLejano = document.getElementById("fondoLejano");
   const modalInfo = document.getElementById("modalInfo");
   const modalTitulo = document.getElementById("modalTitulo");
   const modalTexto = document.getElementById("modalTexto");
@@ -80,6 +173,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const limiteDerecho = 2200;
   let modalAbierto = false;
   let temporizadorMovimiento = null;
+
+  // El fondo lejano se mueve a esta fracción de la velocidad de la cámara (efecto parallax)
+  const FACTOR_PARALLAX = 0.4;
 
   const obras = Array.from(document.querySelectorAll(".obra-museo"));
 
@@ -142,19 +238,24 @@ document.addEventListener("DOMContentLoaded", function () {
     let camaraX = centroVisor - posX - personaje.offsetWidth / 2;
     camaraX = Math.min(0, Math.max(contenedorJuego.clientWidth - 2400, camaraX));
     escenario.style.transform = `translateX(${camaraX}px)`;
+    fondoLejano.style.transform = `translateX(${camaraX * FACTOR_PARALLAX}px)`;
 
     const porcentajeAvance = ((posX - limiteIzquierdo) / (limiteDerecho - limiteIzquierdo)) * 100;
     lineaJugador.style.left = porcentajeAvance + "%";
     lineaProgreso.style.width = porcentajeAvance + "%";
 
+    // La época del fondo sigue a la línea de tiempo: la del último hito activado
     const posicionesHitos = [15, 40, 65, 90];
+    let epoca = 0;
     hitos.forEach((hito, index) => {
       if (porcentajeAvance >= posicionesHitos[index] - 5) {
         hito.classList.add("activo");
+        epoca = index;
       } else {
         hito.classList.remove("activo");
       }
     });
+    contenedorJuego.dataset.epoca = String(epoca);
 
     verificarCercaniaObras();
   }
@@ -185,6 +286,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   btnCerrarModal.addEventListener("click", cerrarModal);
 
-  // Estado inicial: posiciona cámara, línea de tiempo y carteles
+  // Estado inicial: posiciona cámara, línea de tiempo, época y carteles
   actualizarPosicion();
 });
