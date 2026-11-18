@@ -2,9 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const contenedorJuego = document.querySelector(".zona-juego");
   if (!contenedorJuego) return;
 
-  // ============================================================
-  // DATOS DE LAS OBRAS (aquí se editan los textos del modal)
-  // ============================================================
   const OBRAS = [
     {
       left: 350,
@@ -44,9 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
   }
 
-  // ============================================================
-  // DECORADO (se genera con código)
-  // ============================================================
   const faroles = Array.from({ length: 8 }, function (_, i) {
     return `<div class="farol" style="left:${20 + i * 240}px; animation-delay:${(i * 0.7).toFixed(1)}s"></div>`;
   }).join("");
@@ -62,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return `<div class="chimenea" style="left:${c[0]}px; height:${c[1]}px; --retraso:${i * 0.9}s"></div>`;
   }).join("");
 
-  // Columnas: una en cada extremo y dos flanqueando el centro de cada pasillo entre cuadros
   const columnasX = [40, 2338];
   [720, 1320, 1920].forEach(function (centro) {
     columnasX.push(centro - 150 - 22, centro + 150 - 22);
@@ -91,7 +84,6 @@ document.addEventListener("DOMContentLoaded", function () {
   contenedorJuego.dataset.epoca = "0";
 
   contenedorJuego.innerHTML = `
-    <!-- Fondo lejano (parallax) -->
     <div class="fondo-lejano" id="fondoLejano">
       <div class="tinte tinte--0"></div>
       <div class="tinte tinte--1"></div>
@@ -174,12 +166,10 @@ document.addEventListener("DOMContentLoaded", function () {
   let modalAbierto = false;
   let temporizadorMovimiento = null;
 
-  // El fondo lejano se mueve a esta fracción de la velocidad de la cámara (efecto parallax)
   const FACTOR_PARALLAX = 0.4;
 
   const obras = Array.from(document.querySelectorAll(".obra-museo"));
 
-  // Distancia (en px) entre el centro de Mao y el centro del cuadro para poder interactuar
   const DISTANCIA_INTERACCION = 160;
 
   function estaCerca(obra) {
@@ -214,7 +204,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Solo se puede hacer clic en un cuadro si Mao está cerca de él
   obras.forEach(function (obra) {
     obra.addEventListener("click", function () {
       if (estaCerca(obra)) {
@@ -244,7 +233,6 @@ document.addEventListener("DOMContentLoaded", function () {
     lineaJugador.style.left = porcentajeAvance + "%";
     lineaProgreso.style.width = porcentajeAvance + "%";
 
-    // La época del fondo sigue a la línea de tiempo: la del último hito activado
     const posicionesHitos = [15, 40, 65, 90];
     let epoca = 0;
     hitos.forEach((hito, index) => {
@@ -286,6 +274,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
   btnCerrarModal.addEventListener("click", cerrarModal);
 
-  // Estado inicial: posiciona cámara, línea de tiempo, época y carteles
   actualizarPosicion();
 });

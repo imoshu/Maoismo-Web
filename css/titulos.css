@@ -1,0 +1,54 @@
+.seccion:not(.seccion--inicio):not(.seccion--fuentes) .titulo-seccion {
+  position: relative;
+  padding: 0 0.15em 0.3em;
+  margin-bottom: clamp(26px, 5vh, 48px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  background: linear-gradient(180deg, #fff4c8 0%, #f0d27e 30%, #b98a32 52%, #f6dc8e 70%, #a0702a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 0 #4a2a08) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.65));
+}
+
+.seccion:not(.seccion--inicio):not(.seccion--fuentes) .titulo-seccion::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.32em;
+  width: max(7.5em, 100%);
+  height: 0.5em;
+  translate: -50% 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 28' fill='none' stroke='%23d9b562' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M44 14H178M222 14H356'/%3E%3Cpath d='M60 9H170M230 9H340' stroke-width='1' opacity='.55'/%3E%3Cpath d='M60 19H170M230 19H340' stroke-width='1' opacity='.55'/%3E%3Cpath d='M200 3L211 14L200 25L189 14Z' fill='%23d9b562'/%3E%3Cpath d='M200 8L206 14L200 20L194 14Z' fill='%237a1115' stroke='none'/%3E%3Cpath d='M180 14L184 10L188 14L184 18Z M212 14L216 10L220 14L216 18Z' fill='%23d9b562' stroke='none'/%3E%3Cpath d='M44 14C34 14 26 8 30 3C34 -1 42 3 38 8C35 11 30 9 32 6'/%3E%3Cpath d='M356 14C366 14 374 8 370 3C366 -1 358 3 362 8C365 11 370 9 368 6'/%3E%3Cpath d='M44 14C34 14 26 20 30 25C34 29 42 25 38 20C35 17 30 19 32 22'/%3E%3Cpath d='M356 14C366 14 374 20 370 25C366 29 358 25 362 20C365 17 370 19 368 22'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+
+.seccion:not(.seccion--inicio):not(.seccion--fuentes) .titulo-seccion[data-zh]::before {
+  content: attr(data-zh);
+  position: absolute;
+  top: 0.05em;
+  left: 100%;
+  margin-left: 0.25em;
+  padding: 0.28em 0.16em;
+  writing-mode: vertical-rl;
+  font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  font-size: 0.32em;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  color: #f7e6c4;
+  -webkit-text-fill-color: #f7e6c4;
+  background: #b3191c;
+  border: 2px solid #f7e6c4;
+  outline: 2px solid #b3191c;
+  border-radius: 3px;
+  rotate: -5deg;
+  opacity: 0.92;
+}
+
+@media (max-width: 640px) {
+  .seccion:not(.seccion--inicio):not(.seccion--fuentes) .titulo-seccion[data-zh]::before {
+    font-size: 0.36em;
+  }
+}
+

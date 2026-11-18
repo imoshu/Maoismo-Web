@@ -1,0 +1,394 @@
+.seccion--video,
+.seccion--juego,
+.seccion--formulario,
+.seccion--fuentes {
+  --deco-dorado: #c9a45c;
+  --deco-dorado-claro: #e8c872;
+  --deco-jade: #2f8f6b;
+  --deco-jade-claro: #6fc59a;
+  --deco-jade-oscuro: #1d5a45;
+  --deco-tejado: clamp(60px, 10vh, 96px);
+  --deco-zocalo: 9%;
+  padding-top: var(--deco-tejado);
+  background:
+    repeating-linear-gradient(90deg, transparent 0 159px, rgba(0, 0, 0, 0.28) 159px 161px, rgba(201, 164, 92, 0.06) 161px 162px),
+    linear-gradient(180deg, #250807 0%, #3a0d0b 55%, #1c0605 100%);
+}
+
+.decorado {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.decorado > * {
+  position: absolute;
+}
+
+.decorado__rayos {
+  left: 50%;
+  top: calc(var(--deco-tejado) - 75vmax);
+  width: 150vmax;
+  height: 150vmax;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, rgba(210, 40, 35, 0.18) 0 4deg, transparent 4deg 10deg);
+  -webkit-mask-image: radial-gradient(circle, #000 8%, transparent 62%);
+  mask-image: radial-gradient(circle, #000 8%, transparent 62%);
+  animation: decoradoGirar 240s linear infinite;
+}
+
+@keyframes decoradoGirar {
+  to { rotate: 360deg; }
+}
+
+/* tejado */
+
+.tejado {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--deco-tejado);
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.6));
+}
+
+.tejado__esquina {
+  position: absolute;
+  top: 0;
+  width: calc(var(--deco-tejado) * 2);
+  height: 100%;
+  overflow: visible;
+}
+
+.tejado__esquina--izq { left: 0; }
+.tejado__esquina--der { right: 0; transform: scaleX(-1); }
+
+.tejado__campana {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  animation: decoradoCampana 3.8s ease-in-out infinite;
+}
+
+@keyframes decoradoCampana {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+
+.tejado__centro {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--deco-tejado) * 2 - 1px);
+  right: calc(var(--deco-tejado) * 2 - 1px);
+}
+
+.tejado__centro > span {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.tejado__tejas {
+  top: 0;
+  height: 48%;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.45), transparent 80%),
+    repeating-linear-gradient(90deg, #0e2f24 0 3px, #1f5f48 3px 8px, #3f9c78 8px 9.5px, #1f5f48 9.5px 13px);
+}
+
+.tejado__remates {
+  top: 48%;
+  height: 12%;
+  background:
+    radial-gradient(circle closest-side, var(--deco-jade) 0 52%, var(--deco-dorado) 56% 80%, transparent 86%) 0 0 / calc(var(--deco-tejado) * 0.22) 100% repeat-x,
+    #123a2d;
+}
+
+.tejado__alero {
+  top: 60%;
+  height: 4%;
+  background: #160505;
+}
+
+.tejado__mensulas {
+  top: 64%;
+  height: 22%;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.35)),
+    repeating-linear-gradient(90deg, var(--deco-dorado) 0 2px, #1f6b52 2px 10px, #24476b 10px 18px, #1f6b52 18px 26px);
+}
+
+.tejado__viga {
+  top: 86%;
+  bottom: 0;
+  background: linear-gradient(#8a1519, #5a0b0e);
+  border-bottom: 3px solid var(--deco-dorado);
+}
+
+/* columnas */
+
+.decorado__columna {
+  top: calc(var(--deco-tejado) * 0.4);
+  bottom: var(--deco-zocalo);
+  width: clamp(22px, 2.8vw, 46px);
+  background:
+    linear-gradient(var(--deco-jade), var(--deco-jade-oscuro)) 0 18px / 100% 7px no-repeat,
+    linear-gradient(var(--deco-jade), var(--deco-jade-oscuro)) 0 calc(100% - 18px) / 100% 7px no-repeat,
+    linear-gradient(90deg, #150404 0%, #5e0d10 28%, #8a1519 46%, #5a0c0f 72%, #150404 100%);
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.6);
+}
+
+.decorado__columna--izq { left: 1.6vw; }
+.decorado__columna--der { right: 1.6vw; }
+
+.decorado__columna::before,
+.decorado__columna::after {
+  content: "";
+  position: absolute;
+  left: -7px;
+  right: -7px;
+  height: 14px;
+  background: linear-gradient(#e0c27a, #9b7a38);
+  border-radius: 2px;
+}
+
+.decorado__columna::before { top: 0; }
+.decorado__columna::after { bottom: 0; }
+
+.decorado__lema {
+  top: calc(var(--deco-tejado) + 7vh);
+  display: none;
+}
+
+.decorado__lema--izq { left: calc(1.6vw + clamp(22px, 2.8vw, 46px) + 1.6vw); }
+.decorado__lema--der { right: calc(1.6vw + clamp(22px, 2.8vw, 46px) + 1.6vw); }
+
+.decorado__lema-zh {
+  position: relative;
+  display: block;
+  writing-mode: vertical-rl;
+  padding: 18px 10px;
+  font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  font-size: clamp(1.4rem, 1.8vw, 2rem);
+  letter-spacing: 0.3em;
+  color: var(--deco-dorado-claro);
+  background: linear-gradient(90deg, #3a0808, #6a1013 50%, #3a0808);
+  border-left: 1px solid rgba(201, 164, 92, 0.55);
+  border-right: 1px solid rgba(201, 164, 92, 0.55);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.6);
+}
+
+.decorado__lema-zh::before,
+.decorado__lema-zh::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  right: -6px;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(var(--deco-jade-claro), var(--deco-jade-oscuro));
+}
+
+.decorado__lema-zh::before { top: -3px; }
+.decorado__lema-zh::after { bottom: -3px; }
+
+.decorado__zocalo {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--deco-zocalo);
+  background:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04), transparent 40%),
+    repeating-linear-gradient(90deg, transparent 0 118px, rgba(0, 0, 0, 0.35) 118px 120px),
+    #120404;
+  border-top: 3px solid var(--deco-jade-oscuro);
+  box-shadow: 0 -2px 0 var(--deco-dorado);
+}
+
+.decorado__sombra {
+  inset: 0;
+  background:
+    radial-gradient(ellipse 42% 48% at 50% 55%, rgba(16, 3, 3, 0.55), transparent 100%),
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+/* faroles */
+
+.farol-colgante,
+.jade-colgante {
+  top: calc(var(--deco-tejado) * 0.5);
+  left: var(--x);
+  translate: -50% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: 50% 0;
+  animation: decoradoBalanceo 5s ease-in-out infinite;
+  animation-delay: var(--retraso, 0s);
+}
+
+.farol-colgante {
+  --ancho: calc(clamp(38px, 3.6vw, 62px) * var(--tam, 1));
+  width: var(--ancho);
+}
+
+@keyframes decoradoBalanceo {
+  0%, 100% { rotate: -3deg; }
+  50% { rotate: 3deg; }
+}
+
+.farol-colgante__cuerda,
+.jade-colgante__cuerda {
+  width: 2px;
+  height: calc(var(--cuerda, 20px) + var(--deco-tejado) * 0.5);
+  background: linear-gradient(#9b7a38, var(--deco-dorado));
+}
+
+.farol-colgante__cuerpo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 6 / 5;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, #ffc08a 0%, #ff6a45 22%, #c8211f 58%, #6b0b0c 100%);
+  box-shadow: 0 0 26px rgba(255, 90, 60, 0.5), 0 0 70px rgba(255, 60, 30, 0.22);
+  animation: decoradoBrillo 3.4s ease-in-out infinite alternate;
+  animation-delay: var(--retraso, 0s);
+}
+
+@keyframes decoradoBrillo {
+  from { box-shadow: 0 0 22px rgba(255, 90, 60, 0.42), 0 0 60px rgba(255, 60, 30, 0.18); }
+  to { box-shadow: 0 0 32px rgba(255, 110, 70, 0.6), 0 0 90px rgba(255, 70, 40, 0.28); }
+}
+
+.farol-colgante__cuerpo::before,
+.farol-colgante__cuerpo::after {
+  content: "";
+  position: absolute;
+  left: 27%;
+  right: 27%;
+  height: 11%;
+  background: linear-gradient(#e0c27a, #9b7a38);
+  border-radius: 2px;
+}
+
+.farol-colgante__cuerpo::before { top: -5%; }
+.farol-colgante__cuerpo::after { bottom: -5%; }
+
+.farol-colgante__costillas,
+.farol-colgante__costillas::before {
+  position: absolute;
+  inset: 2% 20%;
+  border-radius: 50%;
+  border-left: 1.5px solid rgba(110, 10, 10, 0.55);
+  border-right: 1.5px solid rgba(110, 10, 10, 0.55);
+}
+
+.farol-colgante__costillas::before {
+  content: "";
+  inset: 0 32%;
+}
+
+.farol-colgante__borla {
+  width: 22%;
+  height: calc(var(--ancho) * 0.6);
+  margin-top: 3px;
+  background:
+    radial-gradient(circle at 50% 4px, var(--deco-jade-claro) 0 2px, var(--deco-jade) 2.6px 4px, transparent 4.5px),
+    repeating-linear-gradient(90deg, #a3151a 0 2px, #d02a26 2px 3px) 0 9px / 100% 100% no-repeat;
+  -webkit-mask-image: linear-gradient(#000 70%, transparent);
+  mask-image: linear-gradient(#000 70%, transparent);
+}
+
+/* jade */
+
+.jade-colgante {
+  --disco: clamp(26px, 2.4vw, 40px);
+  width: var(--disco);
+  animation-duration: 6.5s;
+}
+
+.jade-colgante__cuerda {
+  background: #b0191c;
+}
+
+.jade-colgante__nudo {
+  width: 11px;
+  height: 11px;
+  margin: -2px 0 2px;
+  rotate: 45deg;
+  background:
+    linear-gradient(90deg, transparent 45%, #7a0d10 45% 55%, transparent 55%),
+    linear-gradient(transparent 45%, #7a0d10 45% 55%, transparent 55%),
+    #c8211f;
+  border: 1px solid #e05040;
+}
+
+.jade-colgante__disco {
+  width: var(--disco);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.45), transparent 35%),
+    radial-gradient(circle, transparent 0 24%, #0f3a2b 25% 28%, var(--deco-jade-claro) 30%, var(--deco-jade) 62%, var(--deco-jade-oscuro) 100%);
+  -webkit-mask-image: radial-gradient(circle, transparent 0 24%, #000 25%);
+  mask-image: radial-gradient(circle, transparent 0 24%, #000 25%);
+  box-shadow: 0 0 14px rgba(111, 197, 154, 0.35);
+}
+
+.jade-colgante__borla {
+  width: 6px;
+  height: calc(var(--disco) * 0.8);
+  margin-top: 2px;
+  background: repeating-linear-gradient(90deg, #a3151a 0 2px, #d02a26 2px 3px);
+  -webkit-mask-image: linear-gradient(#000 60%, transparent);
+  mask-image: linear-gradient(#000 60%, transparent);
+}
+
+@media (min-width: 1400px) {
+  .decorado__lema {
+    display: block;
+  }
+}
+
+@media (max-width: 900px) {
+  .jade-colgante {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .decorado__columna {
+    width: 12px;
+  }
+
+  .decorado__columna--izq { left: 0; }
+  .decorado__columna--der { right: 0; }
+
+  .decorado__columna::before,
+  .decorado__columna::after {
+    left: -3px;
+    right: -3px;
+    height: 8px;
+  }
+
+  .farol-colgante--2,
+  .farol-colgante--3 {
+    display: none;
+  }
+
+  .farol-colgante--1 { left: 20%; }
+  .farol-colgante--4 { left: 80%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .decorado__rayos,
+  .farol-colgante,
+  .farol-colgante__cuerpo,
+  .jade-colgante,
+  .tejado__campana {
+    animation: none;
+  }
+}

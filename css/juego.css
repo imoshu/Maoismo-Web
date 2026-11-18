@@ -1,8 +1,3 @@
-/* ============================================================
-   ESTILOS DEL MUSEO INTERACTIVO (CUERPO ENTERO)
-   ============================================================ */
-
-/* Color de la luz ambiental (cambia según la época y se anima suavemente) */
 @property --luz {
   syntax: "<color>";
   inherits: true;
@@ -30,10 +25,6 @@
 .zona-juego[data-epoca="2"] { --luz: rgba(255, 90, 70, 0.5); }
 .zona-juego[data-epoca="3"] { --luz: rgba(230, 40, 40, 0.5); }
 
-/* ============================================================
-   FONDO LEJANO (parallax)
-   ============================================================ */
-
 .fondo-lejano {
   position: absolute;
   top: 0;
@@ -46,7 +37,6 @@
   transition: transform 0.1s ease-out;
 }
 
-/* Tintes de pared: uno por época, se mezclan con un fundido */
 .tinte,
 .motivo {
   position: absolute;
@@ -83,7 +73,6 @@
   opacity: 1;
 }
 
-/* Motivo 1949: campos de cultivo difuminados */
 .motivo--campo::before {
   content: "";
   position: absolute;
@@ -98,7 +87,6 @@
   mask-image: linear-gradient(to top, #000 10%, transparent);
 }
 
-/* Motivo 1958: chimeneas y resplandor industrial */
 .motivo--industria::before {
   content: "";
   position: absolute;
@@ -145,7 +133,6 @@
   100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
 }
 
-/* Motivo 1966 y 1966-67: sol rojo con rayos y estrella */
 .zona-juego[data-epoca="2"] .motivo--sol,
 .zona-juego[data-epoca="3"] .motivo--sol {
   opacity: 1;
@@ -187,7 +174,6 @@
   to { transform: rotate(360deg); }
 }
 
-/* Paneles de pared y zócalo de madera */
 .fondo__paneles {
   position: absolute;
   inset: 0;
@@ -211,7 +197,6 @@
   border-top: 2px solid rgba(201, 164, 92, 0.55);
 }
 
-/* Ventanas circulares con celosía */
 .ventana {
   position: absolute;
   top: 150px;
@@ -231,7 +216,6 @@
     inset 0 0 30px rgba(0, 0, 0, 0.6);
 }
 
-/* Viga y faroles */
 .fondo__viga {
   position: absolute;
   top: 66px;
@@ -283,10 +267,6 @@
   50% { transform: rotate(3deg); }
 }
 
-/* ============================================================
-   ESCENARIO (se mueve con la cámara)
-   ============================================================ */
-
 .escenario-museo {
   position: absolute;
   top: 0;
@@ -298,7 +278,6 @@
   transition: transform 0.1s ease-out;
 }
 
-/* Suelo del museo (madera) */
 .escenario-museo::after {
   content: "";
   position: absolute;
@@ -313,7 +292,6 @@
   border-top: 3px solid var(--rojo);
 }
 
-/* Alfombra roja */
 .alfombra {
   position: absolute;
   left: 0;
@@ -329,7 +307,6 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
-/* Columnas */
 .columna {
   position: absolute;
   top: 0;
@@ -355,7 +332,6 @@
 .columna::before { top: 0; }
 .columna::after { bottom: 0; }
 
-/* Pergaminos con lemas sobre cada cuadro */
 .pergamino {
   position: absolute;
   top: 20px;
@@ -400,7 +376,6 @@
   white-space: nowrap;
 }
 
-/* Viñeta para dar ambiente */
 .vineta-museo {
   position: absolute;
   inset: 0;
@@ -409,22 +384,16 @@
   background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
 }
 
-/* ============================================================
-   PERSONAJE
-   ============================================================ */
-
 .personaje-mao {
   position: absolute;
   bottom: 1%;
   left: 100px;
-  /* ---- VALORES A CAMBIAR ---- */
   width: 229.09px;
   height: 420px;
-  /* --------------------------- */
   z-index: 5;
   transition: left 0.05s linear;
   filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.7));
-  pointer-events: none; /* los clics pasan a través de Mao */
+  pointer-events: none;
 }
 
 .personaje-mao img {
@@ -447,10 +416,6 @@
   }
 }
 
-/* ============================================================
-   OBRAS
-   ============================================================ */
-
 .obra-museo {
   position: absolute;
   bottom: 35%;
@@ -468,7 +433,6 @@
   border-radius: 4px;
 }
 
-/* Foco de luz sobre el cuadro (más intenso cuando Mao está cerca) */
 .obra-museo::before {
   content: "";
   position: absolute;
@@ -514,10 +478,6 @@
   opacity: 1;
   transform: translateY(0);
 }
-
-/* ============================================================
-   MODAL INFORMATIVO
-   ============================================================ */
 
 .modal-info {
   position: absolute;
@@ -567,10 +527,6 @@
   border-radius: 4px;
   margin-top: 15px;
 }
-
-/* ============================================================
-   LÍNEA DE TIEMPO
-   ============================================================ */
 
 .linea-tiempo {
   position: absolute;
@@ -650,10 +606,6 @@
   z-index: 4;
   transition: left 0.1s ease-out;
 }
-
-/* ============================================================
-   ACCESIBILIDAD: sin animaciones si el usuario lo prefiere
-   ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
   .farol,

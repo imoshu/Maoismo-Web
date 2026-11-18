@@ -83,7 +83,7 @@ h2 {
   transition-delay: 350ms;
 }
 
-/* ---------- Inicio ---------- */
+/* inicio */
 
 .seccion--inicio {
   background: url("../assets/img/monumental-red-dawn-rally.webp") center / cover no-repeat;
@@ -107,8 +107,6 @@ h2 {
   letter-spacing: -0.01em;
 }
 
-/* ---------- Secciones siguientes ---------- */
-
 .seccion--video,
 .seccion--juego,
 .seccion--formulario,
@@ -121,22 +119,6 @@ h2 {
 .titulo-seccion {
   font-size: clamp(2.2rem, 5vw, 4rem);
   margin-bottom: clamp(20px, 4vh, 40px);
-}
-
-.marco-video {
-  width: 100%;
-  max-width: 900px;
-  aspect-ratio: 16 / 9;
-  border: 1px solid var(--crema-suave);
-  background: rgba(0, 0, 0, 0.35);
-}
-
-.marco-video iframe,
-.marco-video video {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
 }
 
 .zona-juego,
@@ -170,7 +152,7 @@ h2 {
   overscroll-behavior: contain;
 }
 
-/* ---------- Viñetas (navegación lateral) ---------- */
+/* viñetas */
 
 .vinetas {
   position: fixed;
