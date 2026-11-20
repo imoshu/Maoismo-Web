@@ -379,8 +379,8 @@
     display: none;
   }
 
-  .farol-colgante--1 { left: 20%; }
-  .farol-colgante--4 { left: 80%; }
+  .farol-colgante--1 { left: 11%; }
+  .farol-colgante--4 { left: 89%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

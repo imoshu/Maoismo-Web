@@ -4,21 +4,8 @@
   const cortinas = Array.from(document.querySelectorAll(".cortina"));
   const sinHover = window.matchMedia("(hover: none)");
 
-  function idDeYoutube(enlace) {
-    try {
-      const url = new URL(enlace);
-      if (url.hostname.indexOf("youtu.be") !== -1) return url.pathname.slice(1) || null;
-      if (url.searchParams.get("v")) return url.searchParams.get("v");
-      const partes = url.pathname.match(/\/(embed|shorts|live)\/([\w-]{11})/);
-      return partes ? partes[2] : null;
-    } catch (e) {
-      return null;
-    }
-  }
-
   cortinas.forEach(function (cortina) {
-    const id = idDeYoutube(cortina.href);
-    const imagen = cortina.dataset.miniatura || (id ? "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg" : null);
+    const imagen = cortina.dataset.miniatura;
     if (imagen) {
       const rutaCompleta = new URL(imagen, document.baseURI).href;
       cortina.style.setProperty("--miniatura", 'url("' + rutaCompleta + '")');

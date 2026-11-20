@@ -2,6 +2,7 @@
   "use strict";
 
   const carril = document.querySelector(".carril");
+  const visor = document.querySelector(".visor");
   const secciones = Array.from(document.querySelectorAll(".seccion"));
   const enlaces = Array.from(document.querySelectorAll(".vinetas a"));
 
@@ -40,7 +41,8 @@
     });
 
     if (opciones.actualizarHash !== false) {
-      history.replaceState(null, "", "#" + secciones[destino].id);
+      const direccion = destino === 0 ? location.pathname + location.search : "#" + secciones[destino].id;
+      history.replaceState(null, "", direccion);
     }
 
     bloqueado = true;
@@ -91,7 +93,8 @@
 
   window.addEventListener("keydown", function (e) {
     const t = e.target;
-    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(t.tagName))) return;
+    if (t && t.closest && t.closest(".quiz")) return;
     if (e.altKey || e.ctrlKey || e.metaKey) return;
 
     let accion = null;
@@ -146,6 +149,13 @@
     if (direccion > 0) siguiente();
     else anterior();
   }, { passive: true });
+
+  visor.addEventListener("scroll", function () {
+    if (visor.scrollTop || visor.scrollLeft) {
+      visor.scrollTop = 0;
+      visor.scrollLeft = 0;
+    }
+  });
 
   enlaces.forEach(function (a) {
     a.addEventListener("click", function (e) {

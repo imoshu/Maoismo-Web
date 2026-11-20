@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>¿Cómo transformó el maoísmo a China?</title>
   <meta name="description" content="Proyecto de historia sobre el maoísmo y la transformación de China.">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icono-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/icono-192.png">
+  <link rel="apple-touch-icon" href="assets/img/icono-180.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,14 +18,15 @@
   <link rel="stylesheet" href="css/video.css">
   <link rel="stylesheet" href="css/decorado.css">
   <link rel="stylesheet" href="css/titulos.css">
+  <link rel="stylesheet" href="css/formulario.css">
 </head>
 <body>
 
   <nav class="vinetas" aria-label="Secciones de la página">
     <ul>
       <li><a href="#inicio" data-index="0"><span class="vinetas__texto">Inicio</span><span class="vinetas__barra"></span></a></li>
-      <li><a href="#video" data-index="1"><span class="vinetas__texto">Video</span><span class="vinetas__barra"></span></a></li>
-      <li><a href="#juego" data-index="2"><span class="vinetas__texto">Juego</span><span class="vinetas__barra"></span></a></li>
+      <li><a href="#archivo" data-index="1"><span class="vinetas__texto">Archivo histórico</span><span class="vinetas__barra"></span></a></li>
+      <li><a href="#museo" data-index="2"><span class="vinetas__texto">Museo histórico</span><span class="vinetas__barra"></span></a></li>
       <li><a href="#formulario" data-index="3"><span class="vinetas__texto">Formulario</span><span class="vinetas__barra"></span></a></li>
       <li><a href="#fuentes" data-index="4"><span class="vinetas__texto">Fuentes</span><span class="vinetas__barra"></span></a></li>
     </ul>
@@ -37,74 +41,74 @@
         </div>
       </section>
 
-      <section class="seccion seccion--video" id="video" aria-label="Video">
+      <section class="seccion seccion--video" id="archivo" aria-label="Archivo histórico">
         <div class="seccion__contenido seccion__contenido--ancho">
-          <h2 class="titulo-seccion" data-zh="视频">Video</h2>
+          <h2 class="titulo-seccion" data-zh="档案馆">Archivo histórico</h2>
           <div class="cortinas">
 
-            <a class="cortina" data-miniatura="assets/img/LaLargaMarcha.jpg" href="https://www.youtube.com/" target="_blank" rel="noopener">
+            <a class="cortina" data-miniatura="assets/img/ChinaAntes1949.jpg" href="https://www.history.com/articles/china-timeline" target="_blank" rel="noopener">
               <span class="cortina__numero">01</span>
-              <span class="cortina__vertical">La Larga Marcha</span>
+              <span class="cortina__vertical">China antes de 1949</span>
               <span class="cortina__info">
-                <span class="cortina__anio">1934 – 1935</span>
-                <span class="cortina__titulo">La Larga Marcha</span>
-                <span class="cortina__texto">La retirada de unos 10&nbsp;000&nbsp;km del Ejército Rojo que convirtió a Mao en el líder indiscutido del Partido Comunista.</span>
-                <span class="cortina__boton">Ver en YouTube</span>
+                <span class="cortina__anio">1911 – 1949</span>
+                <span class="cortina__titulo">China antes de 1949</span>
+                <span class="cortina__texto">Tras la caída de la dinastía Qing, el país quedó dividido entre caudillos militares, la invasión japonesa y la guerra civil entre nacionalistas y comunistas.</span>
+                <span class="cortina__boton">Leer en HISTORY</span>
               </span>
             </a>
 
-            <a class="cortina" data-miniatura="assets/img/Fundacion.jpg" href="https://www.youtube.com/" target="_blank" rel="noopener">
+            <a class="cortina" data-miniatura="assets/img/Fundacion.jpg" href="https://elordenmundial.com/proclamacion-republica-popular-china/" target="_blank" rel="noopener">
               <span class="cortina__numero">02</span>
               <span class="cortina__vertical">Nace la República Popular</span>
               <span class="cortina__info">
                 <span class="cortina__anio">1949</span>
                 <span class="cortina__titulo">Nace la República Popular</span>
                 <span class="cortina__texto">Tras vencer al Kuomintang en la guerra civil, Mao proclama la República Popular China el 1 de octubre de 1949.</span>
-                <span class="cortina__boton">Ver en YouTube</span>
+                <span class="cortina__boton">Leer en El Orden Mundial</span>
               </span>
             </a>
 
-            <a class="cortina" data-miniatura="assets/img/RevolucionAgraria.jpg" href="https://www.youtube.com/" target="_blank" rel="noopener">
+            <a class="cortina" data-miniatura="assets/img/RevolucionAgraria.jpg" href="https://afe.easia.columbia.edu/special/china_1950_commune.htm" target="_blank" rel="noopener">
               <span class="cortina__numero">03</span>
               <span class="cortina__vertical">Reforma agraria</span>
               <span class="cortina__info">
                 <span class="cortina__anio">1950 – 1953</span>
                 <span class="cortina__titulo">Reforma agraria</span>
                 <span class="cortina__texto">Las tierras de los terratenientes se reparten entre los campesinos, con juicios públicos y ejecuciones masivas.</span>
-                <span class="cortina__boton">Ver en YouTube</span>
+                <span class="cortina__boton">Leer en Columbia University</span>
               </span>
             </a>
 
-            <a class="cortina" data-miniatura="assets/img/SaltoHaciaAdelante.jpg" href="https://www.youtube.com/" target="_blank" rel="noopener">
+            <a class="cortina" data-miniatura="assets/img/SaltoHaciaAdelante.jpg" href="https://elordenmundial.com/gran-salto-adelante-hambruna-secreta-mao/" target="_blank" rel="noopener">
               <span class="cortina__numero">04</span>
               <span class="cortina__vertical">El Gran Salto Adelante</span>
               <span class="cortina__info">
-                <span class="cortina__anio">1958 – 1962</span>
+                <span class="cortina__anio">1958 – 1961</span>
                 <span class="cortina__titulo">El Gran Salto Adelante</span>
                 <span class="cortina__texto">Un plan para industrializar el país a marchas forzadas con comunas populares que terminó en una hambruna con decenas de millones de muertos.</span>
-                <span class="cortina__boton">Ver en YouTube</span>
+                <span class="cortina__boton">Leer en El Orden Mundial</span>
               </span>
             </a>
 
-            <a class="cortina" data-miniatura="assets/img/RevolucionCulturalChina.avif" href="https://www.youtube.com/" target="_blank" rel="noopener">
+            <a class="cortina" data-miniatura="assets/img/RevolucionCulturalChina.avif" href="https://elordenmundial.com/de-la-revolucion-cultural-tiananmen/" target="_blank" rel="noopener">
               <span class="cortina__numero">05</span>
               <span class="cortina__vertical">La Revolución Cultural</span>
               <span class="cortina__info">
                 <span class="cortina__anio">1966 – 1976</span>
                 <span class="cortina__titulo">La Revolución Cultural</span>
                 <span class="cortina__texto">Mao moviliza a los Guardias Rojos contra los “elementos burgueses”: persecuciones, universidades cerradas y patrimonio destruido.</span>
-                <span class="cortina__boton">Ver en YouTube</span>
+                <span class="cortina__boton">Leer en El Orden Mundial</span>
               </span>
             </a>
 
-            <a class="cortina" data-miniatura="assets/img/LegadoMao.jpg" href="https://www.youtube.com/" target="_blank" rel="noopener">
+            <a class="cortina" data-miniatura="assets/img/LegadoMao.jpg" href="https://nuso.org/articulo/xi-deng-mao-china-comunismo-apertura-economia/" target="_blank" rel="noopener">
               <span class="cortina__numero">06</span>
               <span class="cortina__vertical">El legado de Mao</span>
               <span class="cortina__info">
                 <span class="cortina__anio">1976 en adelante</span>
                 <span class="cortina__titulo">El legado de Mao</span>
                 <span class="cortina__texto">Tras su muerte, Deng Xiaoping abre la economía, pero Mao sigue siendo el gran símbolo oficial del Estado chino.</span>
-                <span class="cortina__boton">Ver en YouTube</span>
+                <span class="cortina__boton">Leer en Nueva Sociedad</span>
               </span>
             </a>
 
@@ -112,9 +116,9 @@
         </div>
       </section>
 
-      <section class="seccion seccion--juego" id="juego" aria-label="Juego">
+      <section class="seccion seccion--juego" id="museo" aria-label="Museo histórico">
         <div class="seccion__contenido">
-          <h2 class="titulo-seccion" data-zh="游戏">Juego</h2>
+          <h2 class="titulo-seccion" data-zh="博物馆">Museo histórico</h2>
           <div class="zona-juego"></div>
         </div>
       </section>
@@ -129,13 +133,22 @@
       <section class="seccion seccion--fuentes" id="fuentes" aria-label="Fuentes de información">
         <div class="seccion__contenido">
           <h2 class="titulo-seccion">Fuentes de información</h2>
-          <ol class="lista-fuentes desplazable">
-            <li>Fuente 1</li>
-            <li>Fuente 2</li>
-            <li>Fuente 3</li>
-            <li>Fuente 4</li>
-            <li>Fuente 5</li>
-          </ol>
+          <ul class="lista-fuentes desplazable">
+            <li>Albiac, A. (2016, 22 de enero). <i>Tras las pistas de la China actual. De la Revolución Cultural a Tiananmén</i>. El Orden Mundial. <a href="https://elordenmundial.com/de-la-revolucion-cultural-tiananmen/" target="_blank" rel="noopener">https://elordenmundial.com/de-la-revolucion-cultural-tiananmen/</a></li>
+            <li>Anguiano Roch, E. (2010). De la dinastía Qing en el siglo XIX hasta el fin de la República de China. En F. Botton Beja (Coord.), <i>Historia mínima de China</i> (pp. 229–298). El Colegio de México.</li>
+            <li>Borge Castell, D. (s. f.). La revolución cultural. En <i>La China de Mao</i> (Cuadernos Historia 16, n.º 210, pp. 20–31). Información y Revistas.</li>
+            <li>Botton Beja, F. (2001). Los intelectuales chinos frente al poder y la globalización. En E. Anguiano (Coord.), <i>China contemporánea: La construcción de un país (desde 1949)</i> (pp. 285–304). El Colegio de México.</li>
+            <li>Columbia University. (s. f.). <i>The commune system (1950s)</i>. Asia for Educators. <a href="https://afe.easia.columbia.edu/special/china_1950_commune.htm" target="_blank" rel="noopener">https://afe.easia.columbia.edu/special/china_1950_commune.htm</a></li>
+            <li>Cornejo, R. A. (2001). China: Una revisión de cincuenta años de historia. En E. Anguiano (Coord.), <i>China contemporánea: La construcción de un país (desde 1949)</i> (pp. 13–120). El Colegio de México.</li>
+            <li>Cornejo, R. (2010). Hacia el mundo contemporáneo. En F. Botton Beja (Coord.), <i>Historia mínima de China</i> (pp. 299–348). El Colegio de México.</li>
+            <li>Esteso, D. (2019, enero). <i>Entre el legado de Deng y la herencia de Mao</i>. Nueva Sociedad. <a href="https://nuso.org/articulo/xi-deng-mao-china-comunismo-apertura-economia/" target="_blank" rel="noopener">https://nuso.org/articulo/xi-deng-mao-china-comunismo-apertura-economia/</a></li>
+            <li>HISTORY.com Editors. (2025, 29 de septiembre). <i>China: Timeline</i>. HISTORY. <a href="https://www.history.com/articles/china-timeline" target="_blank" rel="noopener">https://www.history.com/articles/china-timeline</a></li>
+            <li>Meisner, M. (s. f.-a). Evolución del maoísmo (1949–1965). En <i>La China de Mao</i> (Cuadernos Historia 16, n.º 210, pp. 10–19). Información y Revistas.</li>
+            <li>Meisner, M. (s. f.-b). La larga marcha hacia el poder. En <i>La China de Mao</i> (Cuadernos Historia 16, n.º 210, pp. 4–10). Información y Revistas.</li>
+            <li>Rodríguez, E. (2022, 28 de diciembre). <i>El Gran Salto Adelante, la hambruna secreta de Mao</i>. El Orden Mundial. <a href="https://elordenmundial.com/gran-salto-adelante-hambruna-secreta-mao/" target="_blank" rel="noopener">https://elordenmundial.com/gran-salto-adelante-hambruna-secreta-mao/</a></li>
+            <li>Rodríguez y Rodríguez, M. T. (2001). Desarrollo rural en la República Popular China. En E. Anguiano (Coord.), <i>China contemporánea: La construcción de un país (desde 1949)</i> (pp. 305–376). El Colegio de México.</li>
+            <li>Villamuera, J. (2024, 1 de octubre). <i>Así fue la proclamación de la República Popular China</i>. El Orden Mundial. <a href="https://elordenmundial.com/proclamacion-republica-popular-china/" target="_blank" rel="noopener">https://elordenmundial.com/proclamacion-republica-popular-china/</a></li>
+          </ul>
         </div>
       </section>
 
@@ -146,5 +159,6 @@
   <script src="js/main.js"></script>
   <script src="js/juego.js"></script>
   <script src="js/video.js"></script>
+  <script src="js/formulario.js"></script>
 </body>
 </html>

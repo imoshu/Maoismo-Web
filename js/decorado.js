@@ -9,8 +9,8 @@
   ];
 
   const jades = [
-    { x: "37%", cuerda: 22, retraso: -1.1 },
-    { x: "63%", cuerda: 22, retraso: -2.7 }
+    { x: "18%", cuerda: 22, retraso: -1.1 },
+    { x: "82%", cuerda: 22, retraso: -2.7 }
   ];
 
   function farol(datos, i) {

@@ -130,20 +130,40 @@ h2 {
 
 .lista-fuentes {
   width: 100%;
-  max-width: 760px;
+  max-width: 900px;
   margin: 0;
-  padding: 0 0 0 1.4em;
+  padding: 0 8px 0 0;
+  list-style: none;
   text-align: left;
-  font-size: clamp(1.15rem, 2vw, 1.4rem);
-  line-height: 1.5;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.45;
+}
+
+.seccion.seccion--fuentes {
+  padding-bottom: 9vh;
+}
+
+.seccion--fuentes .seccion__contenido {
+  max-height: calc(100dvh - var(--deco-tejado, 0px) - 9vh - 4vh);
+}
+
+.lista-fuentes li {
+  padding-left: 2.2em;
+  text-indent: -2.2em;
 }
 
 .lista-fuentes li + li {
-  margin-top: 0.8em;
+  margin-top: 0.7em;
 }
 
 .lista-fuentes a {
   color: var(--crema);
+  overflow-wrap: anywhere;
+  text-decoration-color: rgba(244, 233, 218, 0.45);
+}
+
+.lista-fuentes a:hover {
+  text-decoration-color: currentColor;
 }
 
 .desplazable {
@@ -234,7 +254,7 @@ h2 {
     font-size: 1rem;
   }
 
-  .vinetas a:not([aria-current="true"]) .vinetas__texto {
+  .vinetas__texto {
     display: none;
   }
 
