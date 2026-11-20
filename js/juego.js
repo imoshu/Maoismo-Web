@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Su proyecto buscaba construir una sociedad socialista y convertir al país en una potencia independiente, " +
         "pero también dejó decisiones económicas desastrosas, persecuciones y millones de víctimas. " +
         "De ahí nace la pregunta: ¿cómo transformó el maoísmo a China?",
-      video: VIDEO_POR_DEFECTO
+      video: "https://youtu.be/428uKL1zbLE" // Persona 1
     },
     {
       left: 950,
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "En 1911 cayó la dinastía Qing y China quedó sumida en la inestabilidad y la pobreza campesina. " +
         "En 1921 nació el Partido Comunista, y Mao propuso que los campesinos, y no solo los obreros, fueran el motor de la revolución. " +
         "Tras la guerra civil contra el Kuomintang, el 1 de octubre de 1949 proclamó la República Popular China.",
-      video: VIDEO_POR_DEFECTO
+      video: "https://youtu.be/NY6fARBSres" // Persona 2
     },
     {
       left: 1550,
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "El nuevo gobierno redistribuyó la tierra entre los campesinos, nacionalizó la industria y la banca, " +
         "y amplió la educación, la salud y los derechos de las mujeres con la Ley de Matrimonio de 1950. " +
         "Pero el proceso vino con violencia contra los propietarios y con un Partido que concentró el poder y castigó la oposición.",
-      video: VIDEO_POR_DEFECTO
+      video: VIDEO_POR_DEFECTO // Persona 3 (falta el link)
     },
     {
       left: 2150,
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "En 1958 Mao quiso convertir a China en una potencia industrial en muy poco tiempo. " +
         "Millones de campesinos fueron agrupados en comunas populares y se instalaron pequeños hornos para producir acero. " +
         "Las cifras exageradas y los errores agrícolas provocaron, entre 1959 y 1961, una de las peores hambrunas de la historia, con decenas de millones de muertes.",
-      video: VIDEO_POR_DEFECTO
+      video: "https://www.youtube.com/watch?v=6sMCs4CELus" // Persona 4
     },
     {
       left: 2750,
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Tras el fracaso del Gran Salto, Mao inició en 1966 una campaña para recuperar el control político y transformar la cultura y la manera de pensar. " +
         "Movilizó a los jóvenes Guardias Rojos, que seguían el Libro Rojo y denunciaron a profesores e intelectuales. " +
         "Hubo persecución, destrucción del patrimonio y una generación sin estudios, hasta 1976, año en que murió Mao.",
-      video: VIDEO_POR_DEFECTO
+      video: VIDEO_POR_DEFECTO // Persona 5 (falta el link)
     }
   ];
 
