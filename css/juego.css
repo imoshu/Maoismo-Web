@@ -1,40 +1,66 @@
 /* ============================================================
-   ESTILOS DEL MUSEO INTERACTIVO (CUERPO ENTERO)
+   ESTILOS DEL MUSEO INTERACTIVO
    ============================================================ */
 
-/* Color de la luz ambiental (cambia según la época y se anima suavemente) */
+/* Esto permite que el color de la luz cambie suave entre epocas */
 @property --luz {
   syntax: "<color>";
   inherits: true;
   initial-value: rgba(255, 214, 150, 0.45);
 }
 
+
+/* ------------------------------------------------------------
+   CAJA PRINCIPAL DEL JUEGO
+   ------------------------------------------------------------ */
+
 .zona-juego {
   --luz: rgba(255, 214, 150, 0.45);
   --dorado: #c9a45c;
+
   position: relative;
   width: 100%;
   max-width: 900px;
   height: 480px;
   min-height: 400px;
+
   border: 2px solid var(--crema-suave);
   border-radius: 8px;
   background: #110404;
   overflow: hidden;
   box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+
   transition: --luz 1.2s ease;
 }
 
-/* 5 épocas: 0 introducción, 1 (1911-1949), 2 (desde 1949), 3 (1958), 4 (1966) */
-.zona-juego[data-epoca="0"] { --luz: rgba(255, 214, 150, 0.45); }
-.zona-juego[data-epoca="1"] { --luz: rgba(255, 200, 130, 0.45); }
-.zona-juego[data-epoca="2"] { --luz: rgba(255, 180, 100, 0.45); }
-.zona-juego[data-epoca="3"] { --luz: rgba(255, 150, 80, 0.45); }
-.zona-juego[data-epoca="4"] { --luz: rgba(255, 90, 70, 0.5); }
 
-/* ============================================================
-   FONDO LEJANO (parallax)
-   ============================================================ */
+/* Color de la luz segun la epoca
+   0 = introduccion, 1 = 1911-1949, 2 = desde 1949, 3 = 1958, 4 = 1966 */
+
+.zona-juego[data-epoca="0"] {
+  --luz: rgba(255, 214, 150, 0.45);
+}
+
+.zona-juego[data-epoca="1"] {
+  --luz: rgba(255, 200, 130, 0.45);
+}
+
+.zona-juego[data-epoca="2"] {
+  --luz: rgba(255, 180, 100, 0.45);
+}
+
+.zona-juego[data-epoca="3"] {
+  --luz: rgba(255, 150, 80, 0.45);
+}
+
+.zona-juego[data-epoca="4"] {
+  --luz: rgba(255, 90, 70, 0.5);
+}
+
+
+/* ------------------------------------------------------------
+   FONDO DE ATRAS (se mueve mas lento que Mao)
+   ------------------------------------------------------------ */
 
 .fondo-lejano {
   position: absolute;
@@ -48,45 +74,58 @@
   transition: transform 0.1s ease-out;
 }
 
-/* Tintes de pared: uno por época, se mezclan con un fundido */
+
+/* Los colores de pared y los dibujos aparecen y desaparecen suave */
+
 .tinte,
 .motivo {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   opacity: 0;
   transition: opacity 1.2s ease;
 }
 
-/* 0: introducción (sobrio, madera oscura) */
+
+/* Epoca 0: introduccion */
 .tinte--0 {
   background:
     radial-gradient(ellipse at 50% 100%, rgba(201, 164, 92, 0.14), transparent 60%),
     linear-gradient(180deg, #1c0e0a 0%, #2c1710 65%, #1a0d09 100%);
 }
-/* 1: 1911-1949 (tonos tierra) */
+
+/* Epoca 1: 1911-1949 */
 .tinte--1 {
   background:
     radial-gradient(ellipse at 50% 100%, rgba(214, 160, 70, 0.22), transparent 60%),
     linear-gradient(180deg, #24150a 0%, #38200f 65%, #22130a 100%);
 }
-/* 2: desde 1949 (nuevo Estado, rojo y oro cálido) */
+
+/* Epoca 2: desde 1949 */
 .tinte--2 {
   background:
     radial-gradient(ellipse at 50% 90%, rgba(230, 150, 60, 0.2), transparent 60%),
     linear-gradient(180deg, #2a0d0a 0%, #44170f 65%, #250c09 100%);
 }
-/* 3: 1958 (industrial) */
+
+/* Epoca 3: 1958 */
 .tinte--3 {
   background:
     linear-gradient(to top, rgba(230, 110, 40, 0.22), transparent 45%),
     linear-gradient(180deg, #1e0c0b 0%, #33120e 65%, #1f0b0a 100%);
 }
-/* 4: 1966 (rojo intenso) */
+
+/* Epoca 4: 1966 */
 .tinte--4 {
   background:
     radial-gradient(ellipse at 55% 45%, rgba(220, 40, 35, 0.28), transparent 65%),
     linear-gradient(180deg, #340707 0%, #520b0c 70%, #2b0606 100%);
 }
+
+
+/* Mostrar el tinte que le toca a cada epoca */
 
 .zona-juego[data-epoca="0"] .tinte--0,
 .zona-juego[data-epoca="1"] .tinte--1,
@@ -96,7 +135,9 @@
   opacity: 1;
 }
 
-/* Qué motivo se muestra en cada época */
+
+/* Mostrar el dibujo que le toca a cada epoca */
+
 .zona-juego[data-epoca="1"] .motivo--campo,
 .zona-juego[data-epoca="2"] .motivo--campo,
 .zona-juego[data-epoca="3"] .motivo--industria,
@@ -104,7 +145,9 @@
   opacity: 1;
 }
 
-/* Motivo campos de cultivo difuminados (épocas 1 y 2) */
+
+/* Campos de cultivo (epocas 1 y 2) */
+
 .motivo--campo::before {
   content: "";
   position: absolute;
@@ -112,14 +155,18 @@
   right: 0;
   bottom: 30%;
   height: 46%;
+
   background:
     repeating-linear-gradient(98deg, rgba(222, 180, 90, 0.16) 0 2px, transparent 2px 12px),
     linear-gradient(to top, rgba(222, 180, 90, 0.14), transparent);
+
   -webkit-mask-image: linear-gradient(to top, #000 10%, transparent);
   mask-image: linear-gradient(to top, #000 10%, transparent);
 }
 
-/* Motivo 1958: chimeneas y resplandor industrial */
+
+/* Industria: brillo naranja y chimeneas (1958) */
+
 .motivo--industria::before {
   content: "";
   position: absolute;
@@ -161,12 +208,22 @@
 }
 
 @keyframes humoChimenea {
-  0% { transform: translateY(0) scale(0.7); opacity: 0; }
-  30% { opacity: 1; }
-  100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
+  0% {
+    transform: translateY(0) scale(0.7);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50px) scale(1.5);
+    opacity: 0;
+  }
 }
 
-/* Motivo 1966: sol rojo con rayos y estrella */
+
+/* Sol rojo con rayos y estrella (1966) */
+
 .sol {
   position: absolute;
   left: 760px;
@@ -174,16 +231,26 @@
   width: 700px;
   height: 700px;
   border-radius: 50%;
-  background: repeating-conic-gradient(from 0deg, rgba(200, 30, 30, 0.28) 0 5deg, transparent 5deg 12deg);
+
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(200, 30, 30, 0.28) 0 5deg,
+    transparent 5deg 12deg
+  );
+
   -webkit-mask-image: radial-gradient(circle, #000 20%, transparent 70%);
   mask-image: radial-gradient(circle, #000 20%, transparent 70%);
+
   animation: girarSol 160s linear infinite;
 }
 
 .sol::after {
   content: "";
   position: absolute;
-  inset: 38%;
+  top: 38%;
+  left: 38%;
+  right: 38%;
+  bottom: 38%;
   border-radius: 50%;
   background: radial-gradient(circle, #e23a2a 0%, #a3151a 70%, transparent 100%);
 }
@@ -196,17 +263,37 @@
   height: 60px;
   background: #e8c872;
   opacity: 0.8;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
 }
 
 @keyframes girarSol {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-/* Paneles de pared y zócalo de madera */
+
+/* Paneles de la pared */
+
 .fondo__paneles {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
   background: repeating-linear-gradient(
     90deg,
     transparent 0 238px,
@@ -215,19 +302,26 @@
   );
 }
 
+
+/* Zocalo de madera */
+
 .fondo__zocalo {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 30%;
   height: 70px;
+
   background:
     repeating-linear-gradient(90deg, transparent 0 118px, rgba(0, 0, 0, 0.4) 118px 120px),
     linear-gradient(#2a1208, #140606);
+
   border-top: 2px solid rgba(201, 164, 92, 0.55);
 }
 
-/* Ventanas circulares con celosía */
+
+/* Ventanas redondas */
+
 .ventana {
   position: absolute;
   top: 150px;
@@ -235,19 +329,23 @@
   height: 140px;
   border-radius: 50%;
   border: 6px solid #4a2d14;
+
   background:
     linear-gradient(90deg, transparent 48%, #3b2412 48% 52%, transparent 52%),
     linear-gradient(0deg, transparent 48%, #3b2412 48% 52%, transparent 52%),
     repeating-linear-gradient(45deg, transparent 0 14px, rgba(59, 36, 18, 0.8) 14px 16px),
     repeating-linear-gradient(-45deg, transparent 0 14px, rgba(59, 36, 18, 0.8) 14px 16px),
     radial-gradient(circle, var(--luz) 0%, rgba(0, 0, 0, 0.55) 100%);
+
   box-shadow:
     0 0 0 3px rgba(201, 164, 92, 0.7),
     0 0 40px var(--luz),
     inset 0 0 30px rgba(0, 0, 0, 0.6);
 }
 
-/* Viga y faroles */
+
+/* Viga del techo */
+
 .fondo__viga {
   position: absolute;
   top: 66px;
@@ -257,6 +355,9 @@
   background: linear-gradient(#2a1208, #120505);
   border-bottom: 1px solid rgba(201, 164, 92, 0.5);
 }
+
+
+/* Faroles */
 
 .farol {
   position: absolute;
@@ -278,6 +379,7 @@
   width: 16px;
   height: 18px;
   transform: translateX(-50%);
+
   background:
     linear-gradient(var(--dorado), var(--dorado)) center top / 1px 13px no-repeat,
     linear-gradient(var(--dorado), var(--dorado)) center bottom / 16px 5px no-repeat;
@@ -295,26 +397,36 @@
 }
 
 @keyframes balanceoFarol {
-  0%, 100% { transform: rotate(-3deg); }
-  50% { transform: rotate(3deg); }
+  0% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: rotate(-3deg);
+  }
 }
 
-/* ============================================================
-   ESCENARIO (se mueve con la cámara)
-   ============================================================ */
+
+/* ------------------------------------------------------------
+   ESCENARIO (se mueve con la camara)
+   ------------------------------------------------------------ */
 
 .escenario-museo {
   position: absolute;
   top: 0;
   left: 0;
-  width: 3000px; /* JS lo fija con ANCHO_ESCENARIO */
+  width: 3000px; /* el JS lo vuelve a poner */
   height: 100%;
   z-index: 1;
   background: transparent;
   transition: transform 0.1s ease-out;
 }
 
-/* Suelo del museo (madera) */
+
+/* Suelo */
+
 .escenario-museo::after {
   content: "";
   position: absolute;
@@ -322,14 +434,18 @@
   left: 0;
   width: 100%;
   height: 30%;
+
   background:
     linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent 40%),
     repeating-linear-gradient(90deg, transparent 0 118px, rgba(0, 0, 0, 0.35) 118px 120px),
     #120404;
+
   border-top: 3px solid var(--rojo);
 }
 
+
 /* Alfombra roja */
+
 .alfombra {
   position: absolute;
   left: 0;
@@ -337,22 +453,35 @@
   width: 100%;
   height: 9%;
   z-index: 1;
+
   background:
     repeating-linear-gradient(90deg, rgba(201, 164, 92, 0.18) 0 2px, transparent 2px 60px),
     linear-gradient(#7a1115, #4a0709);
+
   border-top: 3px solid var(--dorado);
   border-bottom: 3px solid var(--dorado);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
+
 /* Columnas */
+
 .columna {
   position: absolute;
   top: 0;
   bottom: 30%;
   width: 44px;
   z-index: 1;
-  background: linear-gradient(90deg, #150404 0%, #5e0d10 28%, #8a1519 46%, #5a0c0f 72%, #150404 100%);
+
+  background: linear-gradient(
+    90deg,
+    #150404 0%,
+    #5e0d10 28%,
+    #8a1519 46%,
+    #5a0c0f 72%,
+    #150404 100%
+  );
+
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
   filter: brightness(0.85);
 }
@@ -368,21 +497,30 @@
   border-radius: 2px;
 }
 
-.columna::before { top: 0; }
-.columna::after { bottom: 0; }
+.columna::before {
+  top: 0;
+}
 
-/* Pergaminos con lemas sobre cada cuadro */
+.columna::after {
+  bottom: 0;
+}
+
+
+/* Pergaminos con los lemas */
+
 .pergamino {
   position: absolute;
   top: 20px;
   width: 240px;
   height: 66px;
   z-index: 1;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+
   background: linear-gradient(#5a0d0f, #3a0808);
   border: 1px solid rgba(201, 164, 92, 0.6);
   border-top: 4px solid var(--dorado);
@@ -416,31 +554,41 @@
   white-space: nowrap;
 }
 
-/* Viñeta para dar ambiente */
+
+/* Oscurecido en los bordes para dar ambiente */
+
 .vineta-museo {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 6;
   pointer-events: none;
   background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
 }
 
-/* ============================================================
-   PERSONAJE
-   ============================================================ */
+
+/* ------------------------------------------------------------
+   PERSONAJE (MAO)
+   ------------------------------------------------------------ */
 
 .personaje-mao {
   position: absolute;
   bottom: 1%;
   left: 100px;
-  /* ---- VALORES A CAMBIAR ---- */
+
+  /* ---- VALORES QUE SE PUEDEN CAMBIAR ---- */
   width: 229.09px;
   height: 420px;
-  /* --------------------------- */
+  /* --------------------------------------- */
+
   z-index: 5;
   transition: left 0.05s linear;
   filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.7));
-  pointer-events: none; /* los clics pasan a través de Mao */
+
+  /* los clics pasan a traves de Mao */
+  pointer-events: none;
 }
 
 .personaje-mao img {
@@ -463,28 +611,31 @@
   }
 }
 
-/* ============================================================
-   OBRAS
-   ============================================================ */
+
+/* ------------------------------------------------------------
+   CUADROS (OBRAS)
+   ------------------------------------------------------------ */
 
 .obra-museo {
   position: absolute;
   bottom: 35%;
   width: 140px;
   height: 170px;
+
   background: #230808;
   border: 4px solid var(--crema);
+  border-radius: 4px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 10px;
   text-align: center;
-  border-radius: 4px;
 }
 
-/* Foco de luz sobre el cuadro (más intenso cuando Mao está cerca) */
+/* Rayo de luz sobre el cuadro (mas fuerte cuando Mao esta cerca) */
 .obra-museo::before {
   content: "";
   position: absolute;
@@ -495,8 +646,20 @@
   transform: translateX(-50%);
   z-index: -1;
   pointer-events: none;
-  clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%);
-  background: linear-gradient(to bottom, rgba(255, 226, 170, 0.22), rgba(255, 226, 170, 0.03));
+
+  clip-path: polygon(
+    42% 0,
+    58% 0,
+    100% 100%,
+    0 100%
+  );
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 226, 170, 0.22),
+    rgba(255, 226, 170, 0.03)
+  );
+
   opacity: 0.45;
   transition: opacity 0.4s ease;
 }
@@ -513,6 +676,24 @@
   line-height: 1.15;
 }
 
+/* Imagen dentro del cuadro */
+.obra-museo__imagen {
+  width: 100%;
+  height: 80px;
+  background: #3a0a0a;
+  border: 1px dashed var(--crema-suave);
+  overflow: hidden;
+}
+
+.obra-museo__imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* El cartelito "Haz clic" */
 .obra-museo__indicador {
   position: absolute;
   top: -35px;
@@ -521,10 +702,13 @@
   padding: 4px 10px;
   font-size: 0.8rem;
   border-radius: 12px;
-  opacity: 0;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  transform: translateY(5px);
   white-space: nowrap;
+
+  opacity: 0;
+  transform: translateY(5px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .obra-museo.cerca .obra-museo__indicador {
@@ -532,22 +716,29 @@
   transform: translateY(0);
 }
 
-/* ============================================================
-   MODAL INFORMATIVO (título + texto + video)
-   ============================================================ */
+
+/* ------------------------------------------------------------
+   MODAL (titulo + texto + video)
+   ------------------------------------------------------------ */
 
 .modal-info {
   position: absolute;
-  inset: 20px;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 10;
+
   background: rgba(22, 7, 7, 0.96);
   border: 2px solid var(--crema);
   border-radius: 8px;
-  z-index: 10;
   padding: 18px 24px 20px;
+
   display: flex;
   flex-direction: column;
   gap: 12px;
   text-align: left;
+
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -593,7 +784,7 @@
   overflow-y: auto;
 }
 
-/* Zona del video: ocupa el espacio que sobra debajo del texto */
+/* Zona del video: usa el espacio que sobra debajo del texto */
 .modal-info__video {
   position: relative;
   flex: 1 1 0;
@@ -614,13 +805,15 @@
 
 .video-marco iframe {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   border: 0;
   display: block;
 }
 
+/* Cuando todavia no hay video */
 .video-marco--pendiente {
   display: flex;
   align-items: center;
@@ -643,9 +836,10 @@
   border-radius: 4px;
 }
 
-/* ============================================================
-   LÍNEA DE TIEMPO
-   ============================================================ */
+
+/* ------------------------------------------------------------
+   LINEA DE TIEMPO (arriba)
+   ------------------------------------------------------------ */
 
 .linea-tiempo {
   position: absolute;
@@ -654,6 +848,7 @@
   width: 90%;
   height: 40px;
   z-index: 8;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -682,11 +877,12 @@
   transition: width 0.1s ease-out;
 }
 
-/* La posición (left) de cada hito la pone el JS según su cuadro */
+/* El left de cada punto lo pone el JS segun su cuadro */
 .linea-tiempo__hito {
   position: absolute;
   transform: translateX(-50%);
   z-index: 3;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -698,7 +894,10 @@
   border-radius: 50%;
   background: #3a0a0a;
   border: 2px solid var(--crema-suave);
-  transition: background 0.3s, transform 0.3s;
+
+  transition:
+    background 0.3s,
+    transform 0.3s;
 }
 
 .linea-tiempo__hito.activo .linea-tiempo__punto {
@@ -729,14 +928,17 @@
   transition: left 0.1s ease-out;
 }
 
-/* ============================================================
-   ACCESIBILIDAD: sin animaciones si el usuario lo prefiere
-   ============================================================ */
+
+/* ------------------------------------------------------------
+   SIN ANIMACIONES (si el usuario lo tiene desactivado)
+   ------------------------------------------------------------ */
 
 @media (prefers-reduced-motion: reduce) {
+
   .farol,
   .sol,
   .chimenea::after {
     animation: none;
   }
+
 }
