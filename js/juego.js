@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "y amplió la educación, la salud y los derechos de las mujeres con la Ley de Matrimonio de 1950. " +
         "Pero el proceso vino con violencia contra los propietarios y con un Partido que concentró el poder y castigó la oposición.",
       imagen: "assets/img/perso_3.jpg",
-      video: VIDEO_POR_DEFECTO
+      video: "https://youtu.be/EY6AzNabbpk"
     },
     {
       left: 2150,
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Movilizó a los jóvenes Guardias Rojos, que seguían el Libro Rojo y denunciaron a profesores e intelectuales. " +
         "Hubo persecución, destrucción del patrimonio y una generación sin estudios, hasta 1976, año en que murió Mao.",
       imagen: "assets/img/perso_5.jpg",
-      video: VIDEO_POR_DEFECTO
+      video: "https://youtu.be/HoL_wdsjc5s "
     }
   ];
 
